@@ -20,9 +20,9 @@ public class AnalyticsCounter {
 			i++; // increment i
 			System.out.println("symptom from file: " + line);
 			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			} else if (line.equals("rush")) {
+				headacheCount++;
+				System.out.println("number of headaches: " + headacheCount);
+			} else if (line.equals("rash")) {
 				rashCount++;
 			} else if (line.contains("pupils")) {
 				pupilCount++;
