@@ -22,7 +22,11 @@ public class AnalyticsCounter {
 			if (line.equals("headache")) {
 				headacheCount++;
 				System.out.println("number of headaches: " + headacheCount);
-			} else if (line.equals("rash")) {
+<<<<<<< HEAD
+			} else if (line.contains("rash")) {
+=======
+			} else if (line.contains("rash")) {
+>>>>>>> 0165ea1c118d4d7c984e58410c6019cafc23f830
 				rashCount++;
 			} else if (line.contains("pupils")) {
 				pupilCount++;
