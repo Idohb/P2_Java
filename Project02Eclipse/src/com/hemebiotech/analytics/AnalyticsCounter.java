@@ -8,7 +8,6 @@ public class AnalyticsCounter {
 	private static int headacheCount = 0; // initialize to 0
 	private static int rashCount = 0; // initialize to 0
 	private static int pupilCount = 0; // initialize to 0
-	private static int fever = 0; // initialize to 0
 
 	public static void main(String[] args) throws Exception {
 		// first get input
@@ -27,8 +26,6 @@ public class AnalyticsCounter {
 				rashCount++;
 			} else if (line.contains("pupils")) {
 				pupilCount++;
-			} else if (line.contains("fever")) {
-				fever++;
 			}
 
 			line = reader.readLine(); // get another symptom
@@ -39,7 +36,6 @@ public class AnalyticsCounter {
 		writer.write("headache: " + headacheCount + "\n");
 		writer.write("rash: " + rashCount + "\n");
 		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.write("fever: " + fever + "\n");
 		writer.close();
 	}
 }
