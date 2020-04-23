@@ -3,8 +3,7 @@ package com.hemebiotech.analytics;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Simple brute force implementation
@@ -12,7 +11,7 @@ import java.util.List;
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
-	private String filepath;
+	private final String filepath;
 	
 	/**
 	 * 
@@ -42,6 +41,17 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		}
 		
 		return result;
+	}
+
+	public Map<String,Integer> countNumberSymptoms(List<String> listFromFile) {
+		Map<String, Integer> mapSymptoms = new HashMap<>();
+		if (listFromFile != null && !listFromFile.isEmpty()){
+			listFromFile.forEach (temp ->
+				mapSymptoms.put( temp,
+								 !mapSymptoms.containsKey(temp) ? 1 : (mapSymptoms.get(temp) + 1))
+			);
+		}
+		return mapSymptoms;
 	}
 
 }
