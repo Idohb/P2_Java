@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 
 public class AnalyticsCounter {
@@ -44,12 +45,12 @@ public class AnalyticsCounter {
 	// découpage du main
 	public static void main(String[] args) throws IOException{ // Exception must be declared to be thrown
 		AnalyticsCounter analyticsCounter = new AnalyticsCounter();
-		String line = analyticsCounter.reader("symptoms.txt");
+		List<String> line = analyticsCounter.reader("symptoms.txt");
 		analyticsCounter.result(line);
 	}
 	// Test première ligne avant de faire appel à GetSymptom
-	public String reader(String fileName) {
-		String line = "none";
+	public List<String> reader(String fileName) {
+		/*String line = "none";
 		if (fileName != null) {
 			try {
 				BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -58,13 +59,14 @@ public class AnalyticsCounter {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		return line;
+		}*/
+		ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile(fileName);
+		return readSymptomDataFromFile.getSymptoms();
 	}
 
-	public void result(String line) throws IOException{
+	public void result(List<String> line) throws IOException{
 		FileWriter writer = new FileWriter("result.out");
-		writer.write(line);
+		writer.write(line.get(2)); // test affichage ligne dans le fichier Test OK
 		writer.close();
 	}
 
