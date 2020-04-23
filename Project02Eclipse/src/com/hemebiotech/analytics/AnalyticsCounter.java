@@ -1,6 +1,5 @@
 package com.hemebiotech.analytics;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -16,25 +15,15 @@ public class AnalyticsCounter {
 		Map<String, Integer> countEstablished = readSymptomDataFromFile.countNumberSymptoms(line);
 
 
-		analyticsCounter.result(countEstablished);
+		analyticsCounter.outputFile(countEstablished);
 	}
-	// Test utilisation de GetSymptom
+
 	public List<String> reader() {
 		return readSymptomDataFromFile.getSymptoms();
 	}
 
-	public void result(Map<String, Integer> res) throws IOException{
-		FileWriter writer = new FileWriter("result.out");
-		res.forEach( (symptom, count) -> {
-			//System.out.println(temp);
-			try {
-				writer.write(symptom + ":" + count);
-				writer.write(System.getProperty("line.separator"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		});
-		writer.close();
+	public void outputFile(Map<String, Integer> res) throws IOException{
+		readSymptomDataFromFile.result(res);
 	}
 
 }

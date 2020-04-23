@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,20 @@ public interface ISymptomReader {
 	 */
 	List<String> getSymptoms ();
 
+	/**
+	 * Analyse the occurrence of all symptoms
+	 *
+	 * @param listFromFile : returned by getSymptom
+	 * @return a map with all occurence
+	 */
 	Map<String,Integer> countNumberSymptoms(List<String> listFromFile);
+
+	/**
+	 * put result in the file result.out
+	 *
+	 * @param res : returned by countNumberSymptoms
+	 * @throws IOException
+	 */
+	void result(Map<String, Integer> res) throws IOException;
 
 }
