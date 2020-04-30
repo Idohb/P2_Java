@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Simple brute force implementation
@@ -13,29 +16,32 @@ import java.util.*;
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private final String filepath;
-	
+
 	/**
 	 * Constructor of ReadSymptomDataFromFile
-	 * @param filepath a full or partial path to file with symptom strings in it, one per line
+	 * 
+	 * @param filepath a full or partial path to file with symptom strings in it,
+	 *                 one per line
 	 */
-	public ReadSymptomDataFromFile (String filepath) {
+	public ReadSymptomDataFromFile(String filepath) {
 		this.filepath = filepath;
 	}
 
 	/**
 	 * Read symptoms.txt file
 	 *
-	 * @return a raw listing of all Symptoms obtained from a data source, duplicates are possible/probable
+	 * @return a raw listing of all Symptoms obtained from a data source, duplicates
+	 *         are possible/probable
 	 */
 	@Override
 	public List<String> getSymptoms() {
 		ArrayList<String> result = new ArrayList<>(); // Explicit type argument String can be replaced with <>
-		
+
 		if (filepath != null) {
 			try {
-				BufferedReader reader = new BufferedReader (new FileReader(filepath));
+				BufferedReader reader = new BufferedReader(new FileReader(filepath));
 				String line = reader.readLine();
-				
+
 				while (line != null) {
 					result.add(line);
 					line = reader.readLine();
@@ -45,7 +51,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -55,13 +61,12 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * @param listFromFile : returned by getSymptom
 	 * @return a map HashMap with all occurence
 	 */
-	public Map<String,Integer> countNumberSymptoms(List<String> listFromFile) {
-		Map<String, Integer> mapSymptoms = new HashMap<>();
-		if (listFromFile != null && !listFromFile.isEmpty()){
-			listFromFile.forEach (temp ->
-				mapSymptoms.put( temp,
-								 !mapSymptoms.containsKey(temp) ? 1 : (mapSymptoms.get(temp) + 1))
-			);
+	public Map<String, Integer> countNumberSymptoms(List<String> listFromFile) {
+		TreeMap<String, Integer> mapSymptoms = new TreeMap<>(); // TODO treemap
+		if (listFromFile != null && !listFromFile.isEmpty()) {
+			// for (String temp : temp)
+			listFromFile.forEach(
+					temp -> mapSymptoms.put(temp, !mapSymptoms.containsKey(temp) ? 1 : (mapSymptoms.get(temp) + 1)));
 		}
 		return mapSymptoms;
 	}
@@ -72,9 +77,9 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * @param res : returned by countNumberSymptoms
 	 * @throws IOException
 	 */
-	public void result(Map<String, Integer> res) throws IOException{
+	public void result(Map<String, Integer> res) throws IOException {
 		FileWriter writer = new FileWriter("result.out");
-		res.forEach( (symptom, count) -> {
+		res.forEach((symptom, count) -> {
 			try {
 				writer.write(symptom + ":" + count);
 				writer.write(System.getProperty("line.separator"));
