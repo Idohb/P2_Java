@@ -16,6 +16,7 @@ import java.util.TreeMap;
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private final String filepath;
+	private final String outputFileName = "result.out";
 
 	/**
 	 * Constructor of ReadSymptomDataFromFile
@@ -48,6 +49,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				}
 				reader.close();
 			} catch (IOException e) {
+				System.out.println("Error access File : symptoms.txt");
 				e.printStackTrace();
 			}
 		}
@@ -62,11 +64,11 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * @return a map HashMap with all occurence
 	 */
 	public Map<String, Integer> countNumberSymptoms(List<String> listFromFile) {
-		TreeMap<String, Integer> mapSymptoms = new TreeMap<>(); // TODO treemap
+		TreeMap<String, Integer> mapSymptoms = new TreeMap<>();
 		if (listFromFile != null && !listFromFile.isEmpty()) {
-			// for (String temp : temp)
-			listFromFile.forEach(
-					temp -> mapSymptoms.put(temp, !mapSymptoms.containsKey(temp) ? 1 : (mapSymptoms.get(temp) + 1)));
+			for (String temp : listFromFile) {
+				mapSymptoms.put(temp, !mapSymptoms.containsKey(temp) ? 1 : (mapSymptoms.get(temp) + 1));
+			}
 		}
 		return mapSymptoms;
 	}
@@ -78,15 +80,17 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * @throws IOException
 	 */
 	public void result(Map<String, Integer> res) throws IOException {
-		FileWriter writer = new FileWriter("result.out");
-		res.forEach((symptom, count) -> {
+		FileWriter writer = new FileWriter(outputFileName);
+		for (Map.Entry<String, Integer> entry : res.entrySet()) {
 			try {
-				writer.write(symptom + ":" + count);
+				writer.write(entry.getKey() + "=" + entry.getValue() + ";");
 				writer.write(System.getProperty("line.separator"));
 			} catch (IOException e) {
+				System.out.println("Error access result.out file");
 				e.printStackTrace();
 			}
-		});
+		}
 		writer.close();
+		System.out.println("result.out is successfully written");
 	}
 }
