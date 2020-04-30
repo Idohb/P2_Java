@@ -9,10 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Simple brute force implementation
- *
- */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private final String filepath;
@@ -36,7 +32,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 */
 	@Override
 	public List<String> getSymptoms() {
-		ArrayList<String> result = new ArrayList<>(); // Explicit type argument String can be replaced with <>
+		ArrayList<String> result = new ArrayList<>();
 
 		if (filepath != null) {
 			try {

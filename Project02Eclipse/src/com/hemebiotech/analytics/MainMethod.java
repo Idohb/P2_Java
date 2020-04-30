@@ -11,6 +11,6 @@ public class MainMethod {
 		if (!countEstablished.isEmpty())
 			analyticsCounter.outputFile(countEstablished); // Put all occurence in "result.out" file
 		else
-			System.out.println("The \"symtomps.txt\" file is empty, result.out is not written");
+			System.out.println("The symtomps.txt file is empty, so result.out is not written");
 	}
 }

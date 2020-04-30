@@ -4,21 +4,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Anything that will read symptom data from a source
- * The important part is, the return value from the operation, which is a list of strings,
- * that may contain many duplications
- * 
- * The implementation does not need to order the list
- * 
- */
 public interface ISymptomReader {
 	/**
 	 * If no data is available, return an empty List
 	 * 
-	 * @return a raw listing of all Symptoms obtained from a data source, duplicates are possible/probable
+	 * @return a raw listing of all Symptoms obtained from a data source, duplicates
+	 *         are possible/probable
 	 */
-	List<String> getSymptoms ();
+	List<String> getSymptoms();
 
 	/**
 	 * Analyse the occurrence of all symptoms
@@ -26,7 +19,7 @@ public interface ISymptomReader {
 	 * @param listFromFile : returned by getSymptom
 	 * @return a map with all occurence
 	 */
-	Map<String,Integer> countNumberSymptoms(List<String> listFromFile);
+	Map<String, Integer> countNumberSymptoms(List<String> listFromFile);
 
 	/**
 	 * put result in the file result.out
