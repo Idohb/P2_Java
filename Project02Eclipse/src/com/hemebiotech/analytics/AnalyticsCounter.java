@@ -5,19 +5,20 @@ import java.util.List;
 import java.util.Map;
 
 public class AnalyticsCounter {
-	// TODO private et faire une classe pour main
-	static final ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile("symptoms.txt");
 
-	public static void main(String[] args) throws IOException { // Exception must be declared to be thrown
-		AnalyticsCounter analyticsCounter = new AnalyticsCounter();
-		List<String> line = analyticsCounter.reader();
-		Map<String, Integer> countEstablished = readSymptomDataFromFile.countNumberSymptoms(line);
+	private ReadSymptomDataFromFile readSymptomDataFromFile;
+	private final String fileName = "symptoms.txt";
 
-		analyticsCounter.outputFile(countEstablished);
+	public AnalyticsCounter() {
+		readSymptomDataFromFile = new ReadSymptomDataFromFile(fileName);
 	}
 
-	public List<String> reader() {
+	private List<String> reader() {
 		return readSymptomDataFromFile.getSymptoms();
+	}
+
+	public Map<String, Integer> counter() {
+		return readSymptomDataFromFile.countNumberSymptoms(this.reader());
 	}
 
 	public void outputFile(Map<String, Integer> res) throws IOException {
