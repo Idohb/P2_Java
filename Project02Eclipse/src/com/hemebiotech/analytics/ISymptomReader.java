@@ -25,7 +25,7 @@ public interface ISymptomReader {
 	 * put result in the file result.out
 	 *
 	 * @param res : returned by countNumberSymptoms
-	 * @throws IOException
+	 * @throws IOException look for any access file problems
 	 */
 	void result(Map<String, Integer> res) throws IOException;
 

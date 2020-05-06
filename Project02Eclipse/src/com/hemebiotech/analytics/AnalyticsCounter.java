@@ -7,22 +7,16 @@ import java.util.Map;
 public class AnalyticsCounter {
 
 	private ReadSymptomDataFromFile readSymptomDataFromFile;
-	private final String fileName = "symptoms.txt";
+	private static final String FILENAME = "symptoms.txt";
 
 	/**
 	 * Constructor of AnalyticsCounter
 	 * 
 	 */
 	public AnalyticsCounter() {
-		readSymptomDataFromFile = new ReadSymptomDataFromFile(fileName);
+		readSymptomDataFromFile = new ReadSymptomDataFromFile(FILENAME);
 	}
 
-	/**
-	 * Read symptoms.txt file
-	 *
-	 * @return a raw listing of all Symptoms
-	 * 
-	 */
 	private List<String> reader() {
 		return readSymptomDataFromFile.getSymptoms();
 	}
@@ -40,7 +34,7 @@ public class AnalyticsCounter {
 	 * put all result in result.out file
 	 *
 	 * @param res : returned by counter()
-	 * @throws IOException
+	 * @throws IOException look for any access file problems
 	 */
 	public void outputFile(Map<String, Integer> res) throws IOException {
 		readSymptomDataFromFile.result(res);
