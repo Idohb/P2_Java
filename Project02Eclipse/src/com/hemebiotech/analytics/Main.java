@@ -1,16 +1,16 @@
-/*
- * Project Number 2 for OC
- * Written by KHEK Bodivann
- * version : 1.0
- *  
- */
-
 package com.hemebiotech.analytics;
 
 import java.io.IOException;
 import java.util.Map;
 
-public class MainMethod {
+/**
+ * <h1>Project Number 2 for OC</h1>
+ * 
+ * @author KHEK Bodivann
+ * @version : 1.0.1
+ * 
+ */
+public class Main {
 
 	public static void main(String[] args) throws IOException {
 		AnalyticsCounter analyticsCounter = new AnalyticsCounter();
